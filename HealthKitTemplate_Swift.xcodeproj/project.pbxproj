@@ -17,6 +17,7 @@
 		4766CBE01D1ABF1100B9AD7F /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4766CBDF1D1ABF1100B9AD7F /* HealthKit.framework */; };
 		4766CBE31D1AC90600B9AD7F /* HKWalking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4766CBE21D1AC90600B9AD7F /* HKWalking.swift */; };
 		4766CBE51D1AD98000B9AD7F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4766CBE41D1AD98000B9AD7F /* ViewController.swift */; };
+		4799DA0D1D21729300F8C937 /* HKStepCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4799DA0C1D21729300F8C937 /* HKStepCounter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,7 @@
 		4766CBE11D1ABF1100B9AD7F /* HealthKitTemplate_Swift.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = HealthKitTemplate_Swift.entitlements; sourceTree = "<group>"; };
 		4766CBE21D1AC90600B9AD7F /* HKWalking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HKWalking.swift; sourceTree = "<group>"; };
 		4766CBE41D1AD98000B9AD7F /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		4799DA0C1D21729300F8C937 /* HKStepCounter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HKStepCounter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 				4766CBAD1D1ABEB900B9AD7F /* AppDelegate.swift */,
 				4766CBDD1D1ABEE700B9AD7F /* HealthKitProvider.swift */,
 				4766CBE21D1AC90600B9AD7F /* HKWalking.swift */,
+				4799DA0C1D21729300F8C937 /* HKStepCounter.swift */,
 				4766CBE41D1AD98000B9AD7F /* ViewController.swift */,
 				4766CBB31D1ABEB900B9AD7F /* Main.storyboard */,
 				4766CBB61D1ABEB900B9AD7F /* Assets.xcassets */,
@@ -274,6 +277,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4799DA0D1D21729300F8C937 /* HKStepCounter.swift in Sources */,
 				4766CBAE1D1ABEB900B9AD7F /* AppDelegate.swift in Sources */,
 				4766CBDE1D1ABEE700B9AD7F /* HealthKitProvider.swift in Sources */,
 				4766CBE51D1AD98000B9AD7F /* ViewController.swift in Sources */,
@@ -506,6 +510,7 @@
 				4766CBD61D1ABEB900B9AD7F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4766CBD71D1ABEB900B9AD7F /* Build configuration list for PBXNativeTarget "HealthKitTemplate_SwiftTests" */ = {
 			isa = XCConfigurationList;
@@ -514,6 +519,7 @@
 				4766CBD91D1ABEB900B9AD7F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4766CBDA1D1ABEB900B9AD7F /* Build configuration list for PBXNativeTarget "HealthKitTemplate_SwiftUITests" */ = {
 			isa = XCConfigurationList;
@@ -522,6 +528,7 @@
 				4766CBDC1D1ABEB900B9AD7F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

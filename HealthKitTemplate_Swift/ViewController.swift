@@ -16,18 +16,19 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         //request for autorization
         self.requestForAuthorization()
-        readWalkingData()
-        HealthKitProvider().writeWalkingSampleDate(1000, startDate:NSDate(), endDate:NSDate().dateByAddingTimeInterval(60*60*24))
+        //readWalkingData()
+        //HealthKitProvider().writeWalkingSampleDate(1000, startDate:NSDate(), endDate:NSDate().dateByAddingTimeInterval(60*60*24))
+        HealthKitProvider().readCumulativeSumOfSteps()
     }
     
     func requestForAuthorization(){
         HealthKitProvider().requestHealthKitAuthorization { (success, error) in
-            print("holahostia")
+            print("Request succeeded!")
         }
     }
     
     func readWalkingData() {
-        HealthKitProvider().readMostRecentWalkingTimeActiveSample()
+        HealthKitProvider().readStepCounterSamples()
     }
 }
 

@@ -44,6 +44,16 @@ class HealthKitProvider{
             print("hem arribat al provider: %@",timeInterval)
         }
     }
+    func readCumulativeSumOfSteps() {
+        HKStepCounter().getCumulativeSum { (steps) in
+            print("Steps:",steps)
+        }
+    }
+    
+    func readStepCounterSamples(){
+        HKStepCounter().readStepCounterSamples{ (timeInterval) in
+            print("hem arribar al provider")
+    }
     
     func writeWalkingSampleDate(distance:Double, startDate:NSDate, endDate:NSDate)->Void{
         HKWalking().writeWalkingSampleDate(distance, startDate: startDate, endDate:endDate)
@@ -52,5 +62,5 @@ class HealthKitProvider{
 }
 
 
-
+}
 

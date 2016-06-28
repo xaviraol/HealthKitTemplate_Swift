@@ -16,20 +16,28 @@ class HKWalking {
         let sampleType = HKSampleType.quantityTypeForIdentifier(HKQuantityTypeIdentifierDistanceWalkingRunning)
         let predicate = HKQuery.predicateForSamplesWithStartDate(NSDate.distantPast() , endDate: NSDate(), options: HKQueryOptions.None)
         let sortDescriptor = NSSortDescriptor.init(key: HKSampleSortIdentifierStartDate, ascending: false)
-        
         let query = HKSampleQuery(sampleType: sampleType!, predicate: predicate, limit:HKObjectQueryNoLimit , sortDescriptors: [sortDescriptor]) {
+            
             (query, results, error) in
             if error != nil {
                 print("An error has occured with the following description: \(error!.localizedDescription)")
             } else {
-                for item in results! {
-                    if let sample = item as? HKQuantitySample {
-                        print("Sample Quantity:",sample.quantity)
-                        print("Sample StartDate:",sample.startDate)
-                        print("timeActive",sample.endDate.timeIntervalSinceDate(sample.startDate),"seconds")
-                        print("Sample EndDate:",sample.endDate,"\n")
+                
+                let sample = results?.first as? HKQuantitySample
+                print("Sample Quantity:",sample!.quantity)
+                print("Sample StartDate:",sample!.startDate)
+                print("timeActive",sample!.endDate.timeIntervalSinceDate(sample!.startDate),"seconds")
+                print("Sample EndDate:",sample!.endDate,"\n")
+                if sample?.endDate.compare((sample?.startDate)!) == .OrderedSame
+                {
+                    let distance = sample?.quantity.doubleValueForUnit(HKUnit.meterUnitWithMetricPrefix(HKMetricPrefix.Kilo));
+                    let averageWalkingSpeed = 5.0;
+                    let timeActive = (distance!/averageWalkingSpeed) * 3600
+                    print("TIMEACTIVE DEL PRIMER:",timeActive)
+                    if (error != nil){
+                        completion(timeInterval: timeActive)
                     }
-                    let sample = results?.first as? HKQuantitySample
+                }else{
                     let timeActive = sample!.endDate.timeIntervalSinceDate(sample!.startDate)
                     print("TIMEACTIVE DEL PRIMER:",timeActive)
                     if (error != nil){
@@ -56,6 +64,7 @@ class HKWalking {
             
             if error != nil {
                 print("An error has occured with the following description: \(error!.localizedDescription)")
+                abort()
             } else {
                 self.readMostRecentWalkingTimeActiveSample{ (timeInterval) in
                     dispatch_async(dispatch_get_main_queue()) {
@@ -75,33 +84,8 @@ class HKWalking {
         let walkingQuantitySample = HKQuantitySample(type: walkingQuantityType!, quantity:quantityWalk, startDate:startDate, endDate:endDate)
         
         HealthKitProvider().healthStore.saveObject(walkingQuantitySample) { (success, error) in
-            print("item guardat")
+            print("DataPoint saved to HealthKit")
         }
-        
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-//    - (void) writeWalkingRunningDistance:(double)distance fromStartDate:(NSDate*)startDate toEndDate:(NSDate*)endDate withCompletion:(void (^)(bool savedSuccessfully, NSError *error))completion{
-//    
-//    HKQuantityType *walkRunQuantityType = [HKQuantityType quantityTypeForIdentifier:HKQuantityTypeIdentifierDistanceWalkingRunning];
-//    HKUnit *walkRunUnit = [HKUnit meterUnit];
-//    HKQuantity *quantityWalkRun = [HKQuantity quantityWithUnit:walkRunUnit doubleValue:distance];
-//    
-//    HKQuantitySample *walkingRunningSample = [HKQuantitySample quantitySampleWithType:walkRunQuantityType quantity:quantityWalkRun startDate:startDate endDate:endDate];
-//    
-//    [self.healthStore saveObject:walkingRunningSample withCompletion:^(BOOL success, NSError * _Nullable error) {
-//    completion(success, error);
-//    }];
-//    }
 }
 
